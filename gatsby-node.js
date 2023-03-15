@@ -1,6 +1,6 @@
 /**
  * Implement Gatsby's Node APIs in this file.
- *
+ * 
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/
  */
 
@@ -14,5 +14,12 @@ exports.createPages = async ({ actions }) => {
     component: require.resolve("./src/templates/using-dsg.js"),
     context: {},
     defer: true,
+  })
+}
+const path = require("path")
+// for absolute imports
+exports.onCreateWebpackConfig = ({actions}) => {
+  actions.setWebpackConfig ({
+    resolve: {modules: [path.resolve(__dirname ,"src"),"node_modules"]},
   })
 }
